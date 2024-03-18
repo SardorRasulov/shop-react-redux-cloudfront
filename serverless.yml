@@ -5,9 +5,8 @@ frameworkVersion: "3"
 provider:
   name: aws
   runtime: nodejs14.x
-  region: eu-west-1
-  # setup profile for AWS CLI.
-  # profile: node-aws
+  region: ap-northeast-1
+  profile: admin
 
 plugins:
   - serverless-finch
@@ -19,11 +18,11 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: sardorrasulov-shop-react-redux-cloudfront
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
-  ## Serverless-single-page-app-plugin configuration:
+  # Serverless-single-page-app-plugin configuration:
   s3LocalPath: ${self:custom.client.distributionFolder}/
   serverless-s3-cleaner:
     buckets:
@@ -125,7 +124,7 @@ resources:
           #   Bucket: mylogs.s3.amazonaws.com
           #   Prefix: myprefix
 
-  ## In order to print out the hosted domain via `serverless info` we need to define the DomainName output for CloudFormation
+  # In order to print out the hosted domain via `serverless info` we need to define the DomainName output for CloudFormation
   Outputs:
     WebAppS3BucketOutput:
       Value: !Ref WebAppS3Bucket
